@@ -23,14 +23,12 @@ public class Maya.View.EventEdition.ReminderPanel : Gtk.Grid {
     private Gee.ArrayList<string> reminders_to_remove;
     private Gtk.ListBox reminder_list;
 
-    public ReminderPanel (EventDialog parent_dialog) {
-        this.parent_dialog = parent_dialog;
-
+    private void init () {
         expand = true;
         margin_start = margin_end = 12;
         orientation = Gtk.Orientation.VERTICAL;
-        sensitive = parent_dialog.can_edit;
-
+        sensitive = true;
+    
         var reminder_label = new Granite.HeaderLabel (_("Reminders:"));
 
         var no_reminder_label = new Gtk.Label (_("No Reminders"));
@@ -72,6 +70,17 @@ public class Maya.View.EventEdition.ReminderPanel : Gtk.Grid {
         add_button.clicked.connect (() => {
             add_reminder ("");
         });
+    }
+
+    public ReminderPanel.withSettingsDialog (SettingsDialog settingsDialog) {
+        init ();
+    }
+
+
+    public ReminderPanel (EventDialog parent_dialog) {
+        init ();
+        this.parent_dialog = parent_dialog;
+        sensitive = parent_dialog.can_edit;
     }
 
     private ReminderGrid add_reminder (string uid) {

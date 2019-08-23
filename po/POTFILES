@@ -36,6 +36,7 @@ src/Grid/WeekLabels.vala
 src/Grid/Header.vala
 src/Grid/VAutoHider.vala
 src/SourceDialog/SourceDialog.vala
+src/SourceDialog/SettingsDialog.vala
 src/SourceDialog/SourceItem.vala
 src/SourceDialog/SourceSelector.vala
 src/Widgets/AgendaEventRow.vala

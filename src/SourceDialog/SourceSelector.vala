@@ -23,6 +23,7 @@ public class Maya.View.SourceSelector : Gtk.Popover {
 
     private Gtk.Stack stack;
     private SourceDialog src_dialog = null;
+    private SettingsDialog settings_dialog = null;
 
     private Gtk.Grid main_grid;
     private Gtk.ListBox calendar_box;
@@ -55,6 +56,13 @@ public class Maya.View.SourceSelector : Gtk.Popover {
         add_calendar_button.add (add_calendar_label);
         add_calendar_button.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUITEM);
 
+        var settings_label = new Gtk.Label (_("Settings"));
+        settings_label.xalign = 0;
+
+        var settings_button = new Gtk.Button ();
+        settings_button.add (settings_label);
+        settings_button.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUITEM);
+
         main_grid = new Gtk.Grid ();
         main_grid.row_spacing = 6;
         main_grid.margin_top = 6;
@@ -62,6 +70,8 @@ public class Maya.View.SourceSelector : Gtk.Popover {
         main_grid.add (scroll);
         main_grid.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
         main_grid.add (add_calendar_button);
+        main_grid.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
+        main_grid.add (settings_button);
 
         stack = new Gtk.Stack ();
         stack.add_named (main_grid, "main");
@@ -72,6 +82,7 @@ public class Maya.View.SourceSelector : Gtk.Popover {
         stack.show_all ();
 
         add_calendar_button.clicked.connect (create_source);
+        settings_button.clicked.connect (show_settings_dialog);
     }
 
     public async void populate () {
@@ -126,6 +137,17 @@ public class Maya.View.SourceSelector : Gtk.Popover {
         }
 
         src_dialog.set_source (null);
+        switch_to_source ();
+    }
+
+    private void show_settings_dialog() {
+        if(settings_dialog == null) {
+            settings_dialog = new SettingsDialog ();
+            settings_dialog .confirm.connect (() => {switch_to_main ();});
+            stack.add_named (settings_dialog, "settings");
+        }
+
+        settings_dialog.set_source (null);
         switch_to_source ();
     }
 
@@ -188,6 +210,8 @@ public class Maya.View.SourceSelector : Gtk.Popover {
         stack.set_visible_child_full ("main", Gtk.StackTransitionType.SLIDE_RIGHT);
         src_dialog.hide ();
         src_dialog.no_show_all = true;
+        settings_dialog.hide ();
+        settings_dialog.no_show_all = true;
     }
 
     private void switch_to_source () {
@@ -196,5 +220,17 @@ public class Maya.View.SourceSelector : Gtk.Popover {
         stack.set_visible_child_full ("source", Gtk.StackTransitionType.SLIDE_LEFT);
         main_grid.hide ();
         main_grid.no_show_all = true;
+        settings_dialog.hide ();
+        settings_dialog.no_show_all = true;
+    }
+
+    private void switch_to_settings () {
+        settings_dialog.no_show_all = false;
+        settings_dialog.show ();
+        stack.set_visible_child_full ("settings", Gtk.StackTransitionType.SLIDE_LEFT);
+        main_grid.hide ();
+        main_grid.no_show_all = true;
+        src_dialog.hide ();
+        src_dialog.no_show_all = true;
     }
 }

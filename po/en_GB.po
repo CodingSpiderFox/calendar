@@ -188,6 +188,7 @@ msgid "Save Changes"
 msgstr "Save Changes"
 
 #: src/EventEdition/EventDialog.vala:146 src/SourceDialog/SourceDialog.vala:52
+#: src/SettingsDialog/SettingsDialog.vala:42
 #: src/Widgets/ContractorButtonWithMenu.vala:91
 msgid "Cancel"
 msgstr "Cancel"
@@ -654,6 +655,14 @@ msgstr "Create Calendar"
 msgid "Save"
 msgstr "Save"
 
+#: src/SettingsDialog/SettingsDialog.vala:43
+msgid "Confirm"
+msgstr "Confirm"
+
+#: src/SettingsDialog/SettingsDialog.vala:54
+msgid "Default reminders"
+msgstr "Default reminders"
+
 #: src/SourceDialog/SourceItem.vala:75 src/Widgets/EventMenu.vala:49
 msgid "Remove"
 msgstr "Remove"
@@ -682,6 +691,10 @@ msgstr "\"%s\" removed"
 #: src/SourceDialog/SourceSelector.vala:51
 msgid "Add New Calendar…"
 msgstr "Add New Calendar…"
+
+#: src/SourceDialog/SourceSelector.vala:58
+msgid "Settings"
+msgstr "Settings"
 
 #. TRANSLATORS: A range from start date to end date i.e. "Friday, Dec 21 – Saturday, Dec 22"
 #: src/Widgets/AgendaEventRow.vala:176

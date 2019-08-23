@@ -25,6 +25,7 @@ calendar_files = files(
     'Grid/Header.vala',
     'Grid/VAutoHider.vala',
     'SourceDialog/SourceDialog.vala',
+    'SourceDialog/SettingsDialog.vala',
     'SourceDialog/SourceItem.vala',
     'SourceDialog/SourceSelector.vala',
     'Widgets/AgendaEventRow.vala',
