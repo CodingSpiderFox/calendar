@@ -696,10 +696,6 @@ msgstr ""
 msgid "Add New Calendar…"
 msgstr ""
 
-#: src/SourceDialog/SourceDialog.vala:58
-msgid "Settings"
-msgstr ""
-
 #. TRANSLATORS: A range from start date to end date i.e. "Friday, Dec 21 – Saturday, Dec 22"
 #: src/Widgets/AgendaEventRow.vala:176
 #, c-format
